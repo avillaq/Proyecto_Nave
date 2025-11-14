@@ -46,7 +46,7 @@ public class miScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D))
         {
-            print("Movimiento a la derecha");
+            //print("Movimiento a la derecha");
             // transform.Rotate(Vector3.back);
             var rotarDerecha = transform.rotation;
             rotarDerecha.z -= Time.deltaTime * 0.6f;
@@ -54,11 +54,27 @@ public class miScript : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            print("Movimiento a la izquierda");
+            //print("Movimiento a la izquierda");
             // transform.Rotate(Vector3.forward);
             var rotarIzquierda = transform.rotation;
             rotarIzquierda.z += Time.deltaTime * 0.6f;
             transform.rotation = rotarIzquierda;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "ColisionSegura":
+                print("Colision segura...");
+                break;
+            case "Combustible":
+                print("Combustible...");
+                break;
+            default:
+                print("Muerto !!");
+                break;
         }
     }
 
